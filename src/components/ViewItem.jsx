@@ -6,12 +6,12 @@ import AppContext from '../context/AppContext'
 
 const ViewItem = () => {
     const {id} = useParams()
-    const {fetchAProduct,products,loading,setCart} = useContext(AppContext)
+    const {fetchAProduct,setCart,addToCart} = useContext(AppContext)
     const [product,setProduct] = useState({product:{name:'Please wait...',image1:'',image2:'',image3:'',image4:'',description:''},recomended:[]})
     const [quantity,setQuantity] = useState(1)
     const navigate = useNavigate()
 
-    const [bannerimage, setBannerImage] = useState()
+    const [bannerimage, setBannerImage] = useState('')
 
     const changeBanner = (image)=>{
         setBannerImage(product['product'][`image${image}`])
@@ -33,20 +33,24 @@ const ViewItem = () => {
         navigate('/checkout/')
     }
 
+    const setImage = ()=>{
+        setBannerImage(product['product'][`image1`])
+        console.log(
+            'runned....'
+        )
+    }
+
     useEffect(()=>{
         window.scrollTo({top:0,behavior:'smooth'})
-
         fetchAProduct(id).then((res)=>{
             setProduct(res)
-
-     
         })
 
     },[id])
   return (
     <>
     
-    <div className='view-item-div'>
+    <div  className='view-item-div'>
        <div className="images-div">
         <div className="main-image-div">
             <img key={bannerimage} src={bannerimage} alt="Loading" />
@@ -70,22 +74,20 @@ const ViewItem = () => {
                 <h2 style={{marginRight:'0.5rem',fontSize:'2rem'}}>₹{product['product'].price}</h2> <s><h5>₹{product['product'].mrp}</h5></s>
             </div>
             <hr />
-            {/* <div className="varients-div">
-                <h3>Choose a color</h3>
+            <div className="varients-div">
+                <h3>Varients</h3>
+                {String(product['product'].varients).includes(',')?
                 <div>
-                    <label htmlFor="blue">
-                        <input type="radio" name="color" id="blue" /><label> M</label>
-                    </label>
-
-                    <label htmlFor="blue">
-                        <input type="radio" name="color" id="blue" /><label> M</label>
-                    </label>
-
-                    <label htmlFor="blue">
-                        <input type="radio" name="color" id="blue" /> <label> M</label>
-                    </label>
-                </div>
-            </div> */}
+                    {String(product['product'].varients).split(',').map((value)=>{
+                        return (
+                            <label htmlFor="blue">
+                                <input type="radio" name="color" id="blue" /><label> {value}</label>
+                            </label>
+                        )
+                    })}
+                    
+                </div>:<h2>Color : {product['product'].color}</h2>}
+            </div>
             <hr />
             <div className="items-count-div">
                 <div className="calculate-div">
@@ -97,7 +99,7 @@ const ViewItem = () => {
             </div>
             <div className="purchase-div">
                 <button onClick={handleBuyNow} className='btn-primary'>Buy Now</button>
-                <button className='btn-outline-primary'>Add to Cart</button>
+                <button onClick={()=>addToCart(product['product'].id)} className='btn-outline-primary'>Add to Cart</button>
             </div>
             <div className="service-info">
                 <div>

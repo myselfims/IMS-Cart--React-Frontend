@@ -206,7 +206,7 @@ const AppState = (props)=>{
 
     const addToCart = (id)=>{
        
-        axios.post(baseUrl+'cart/',{user:1,product:id},{
+        axios.post(baseUrl+'cart/',{product:id},{
             headers : {
                 "Authorization": 'Bearer '+localStorage.getItem('token')
             }
