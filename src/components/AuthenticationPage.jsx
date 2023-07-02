@@ -5,11 +5,12 @@ import { useContext } from 'react';
 import axios from 'axios';
 
 const AuthenticationPage = (props) => {
-    const {showAlert,alert,login,signup,checkLogin} = useContext(AppContext)
+    const {showAlert,fetchOffers,login,signup,checkLogin,offers} = useContext(AppContext)
     const [username,setUsername] = useState('')
     const [password,setPassword] = useState('')
     const [email,setEmail] = useState('')
     const [loading,setLoading] = useState(false)
+    const [currentOffer, setOffer] = useState(0)
     const navigate = useNavigate()
 
     const handleUsername = (e)=>{
@@ -55,6 +56,8 @@ const AuthenticationPage = (props) => {
     }
 
     useEffect(()=>{
+
+        fetchOffers()
         checkLogin().then((res)=>{
             if (res===true){
                 navigate('/')
@@ -88,8 +91,8 @@ const AuthenticationPage = (props) => {
                 </div>
             </div>
             <div className="auth-banner a-center d-flex direction-col">
-                <img src="" alt="" />
-                <h1>Get best deals on Shoes</h1>
+                <h1>{offers[0].title}</h1>
+                <img style={{width:'30rem'}} src={offers[0].png} alt="" />
             </div>
         </div>
     </div>

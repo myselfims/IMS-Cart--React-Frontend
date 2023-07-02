@@ -937,6 +937,9 @@ hr{
     }
 
     .auth-banner{
+      display: flex;
+      justify-content: center;
+      align-items: center;
       width: 100%;
       margin-left: 2rem;
       padding: 2rem;

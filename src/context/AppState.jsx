@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import AppContext from "./AppContext";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 const AppState = (props)=>{
     const [categories,setCategories] = useState([])
@@ -22,6 +21,7 @@ const AppState = (props)=>{
 
 
     const baseUrl = 'https://imscartbackend.riseimstechnologies.com/'
+    // const baseUrl = 'http://127.0.0.1:8000/'
 
     const showAlert = (type,message)=>{
         if (type==='danger'){
