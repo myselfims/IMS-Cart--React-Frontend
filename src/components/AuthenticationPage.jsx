@@ -90,7 +90,7 @@ const AuthenticationPage = (props) => {
                     </button>
                 </div>
             </div>
-            <div className="auth-banner a-center d-flex direction-col">
+            <div id='auth-banner' className="auth-banner a-center d-flex direction-col">
                 <h1>{offers[0].title}</h1>
                 <img style={{width:'30rem'}} src={offers[0].png} alt="" />
             </div>

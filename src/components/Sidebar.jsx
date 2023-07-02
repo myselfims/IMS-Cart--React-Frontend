@@ -16,7 +16,7 @@ const Sidebar = (props) => {
         <div className="sidebar-div">
             <div className="sidebar-header">
                 <div className="profile-pic-div">
-                    <img src="https://e0.pxfuel.com/wallpapers/932/376/desktop-wallpaper-stylish-boys-cool-d-profile-pics-for-facebook-whatsapp-pretty-boys.jpg" alt="" width={40} height={40}/>
+                    <img src="https://assets.stickpng.com/images/585e4bf3cb11b227491c339a.png" alt="" width={40} height={40}/>
                 </div>
                 <div className="username-div">
                     <label htmlFor="">Hello,</label>
