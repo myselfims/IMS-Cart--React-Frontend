@@ -146,7 +146,7 @@ const AppState = (props)=>{
 
                     }
                 }
-                showAlert('danger','Login required!')
+               
             }catch{}
             
         })
@@ -219,6 +219,7 @@ const AppState = (props)=>{
             }
         }).catch((err)=>{
             if (err.response.status===401){
+                showAlert('danger','Login required!')
                 checkLogin()
             }
             
@@ -297,6 +298,7 @@ const AppState = (props)=>{
             }
         }).catch((err)=>{
             if (err.response.status===401){
+                showAlert('danger','Login required!')
                 checkLogin()
             }
             
