@@ -70,7 +70,7 @@ const ViewItem = () => {
                 <h2 style={{marginRight:'0.5rem',fontSize:'2rem'}}>₹{product['product'].price}</h2> <s><h5>₹{product['product'].mrp}</h5></s>
             </div>
             <hr />
-            <div className="varients-div">
+            {/* <div className="varients-div">
                 <h3>Choose a color</h3>
                 <div>
                     <label htmlFor="blue">
@@ -85,7 +85,7 @@ const ViewItem = () => {
                         <input type="radio" name="color" id="blue" /> <label> M</label>
                     </label>
                 </div>
-            </div>
+            </div> */}
             <hr />
             <div className="items-count-div">
                 <div className="calculate-div">
