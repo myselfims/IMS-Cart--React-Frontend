@@ -3,60 +3,68 @@ import { Link, useNavigate } from 'react-router-dom';
 import AppContext from '../context/AppContext';
 import { useContext } from 'react';
 import axios from 'axios';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+
+const loginSchema = Yup.object({
+    username : Yup.string().min(2).max(20).required('username is required!'),
+    email : Yup.string(),
+    password : Yup.string().required('password is required!'),
+    confirm_password : Yup.string()
+})
+
+const signupSchema = Yup.object({
+    username : Yup.string().min(2).max(20).required('username is required!'),
+    email : Yup.string().required('email is required!').email(),
+    password : Yup.string().min(8).max(20).required('password is required!'),
+    confirm_password : Yup.string().required().oneOf([Yup.ref('password')],'password must match!')
+})
 
 const AuthenticationPage = (props) => {
-    const {showAlert,fetchOffers,login,signup,checkLogin,offers} = useContext(AppContext)
-    const [username,setUsername] = useState('')
-    const [password,setPassword] = useState('')
-    const [email,setEmail] = useState('')
+    const {fetchOffers,login,signup,checkLogin,offers} = useContext(AppContext)
     const [loading,setLoading] = useState(false)
-    const [currentOffer, setOffer] = useState(0)
     const navigate = useNavigate()
 
-    const handleUsername = (e)=>{
-        setUsername(e.target.value)
-    }
-
-    const handlePassword = (e)=>{
-        setPassword(e.target.value)
-    }
-
-    const handleEmail = (e)=>{
-        setEmail(e.target.value)
-    }
-
-    const handleLogin = ()=>{
-        if (username!==''&&password!==''){
-            setLoading(true)
-            login(username,password).then((res)=>{
-                setLoading(false)
-                if(res===true){
-                    navigate('/')
-                }
-            })
-
+    const validation = ()=>{
+        if (props.type === 'login'){
+            return loginSchema
         }else{
-            showAlert('warn','Please enter username and password!')
+            return signupSchema
         }
     }
 
-    const handleSignup = ()=>{
-        if (username!==''&&email!==''&&password!==''){
-            setLoading(true)
-            signup(username,email,password).then((res)=>{
-                setLoading(false)
-                if(res===true){
-                    login(username,password).then((res)=>{if(res===true){navigate('/')}})
-                }
-            })
+    const {values,errors,touched,handleChange,handleBlur,handleSubmit} = useFormik({
+        initialValues : {
+            username : '',
+            email : '',
+            password : '',
+            confirm_password : ''
+        },
+        validationSchema : validation,
+        onSubmit : (data)=>{
+            if (props.type === 'login'){
+                console.log(data)
+                setLoading(true)
+                login(values.username,values.password).then((res)=>{
+                    setLoading(false)
+                    if(res===true){
+                        navigate('/')
+                    }
+                })
 
-        }else{
-            showAlert('warn','Please all the blank fields!')
+            }else{
+                setLoading(true)
+                signup(values.username,values.email,values.password).then((res)=>{
+                    setLoading(false)
+                    if(res===true){
+                        login(username,password).then((res)=>{if(res===true){navigate('/')}})
+                    }
+                })
+            }
         }
-    }
+    })
 
     useEffect(()=>{
-
         fetchOffers()
         checkLogin().then((res)=>{
             if (res===true){
@@ -74,21 +82,71 @@ const AuthenticationPage = (props) => {
                 <div className="auth-header d-flex j-center">
                     <h1>{props.type === 'login'?'Login':'Create Account'}</h1>
                 </div>
-                <div className="auth-body d-flex j-center direction-col">
-                    <input onChange={handleUsername} placeholder='Username' className='form-input' type="text" />
+                <form onSubmit={handleSubmit}>
+                    <div className="auth-body d-flex j-center direction-col">
+                        <input 
+                        onChange={handleChange} 
+                        onBlur={handleBlur} 
+                        name='username' 
+                        placeholder='Username' 
+                        className='form-input' 
+                        type="text" 
+                        value={values.username}
+                        />
+                        <label className='label-alert' htmlFor="">{errors.username && touched.username?errors.username:null}</label>
+                        
+                        {props.type==='login'?'':
+                        <>
+                        <input 
+                        onChange={handleChange} 
+                        onBlur={handleBlur} 
+                        name='email' 
+                        placeholder='Email' 
+                        className='form-input' 
+                        type="email" 
+                        value={values.email}
+                        />
+                        <label className='label-alert' htmlFor="">{errors.email && touched.email?errors.email:null}</label>
+                        </>
+                        }
                     
-                    {props.type==='login'?'':<input onChange={handleEmail} placeholder='Email' className='form-input' type="email" />}
-                
-                    <input onChange={handlePassword} placeholder='Password' className='form-input' type="password" />
+                        <input 
+                        onChange={handleChange} 
+                        onBlur={handleBlur} 
+                        name='password' 
+                        placeholder='Password' 
+                        className='form-input' 
+                        type="password" 
+                        value={values.password}
+                        />
+                        <label className='label-alert' htmlFor="">{errors.password && touched.password?errors.password:null}</label>
 
-                    <label>Already have an account ! <Link to={props.type==='login'?'/auth/signup':'/auth/login'} >{props.type==='login'?'Signup':'Login'}</Link> </label>
+                        
+                        {props.type==='login'?'':
+                        <>
+                        <input 
+                        onChange={handleChange} 
+                        onBlur={handleBlur} 
+                        name='confirm_password' 
+                        placeholder='Confirm Password' 
+                        className='form-input' 
+                        type="password" 
+                        value={values.confirm_password}
+                        />
+                        <label className='label-alert' htmlFor="">{errors.confirm_password && touched.confirm_password?errors.confirm_password:null}</label>
+                        </>
+                        
+                        }
 
-                    <button onClick={props.type==='login'?handleLogin:handleSignup} className='btn-outline-primary'>
-                    {props.type==='login'?'Login':'Signup'}
-                    {loading?<i className="fa-solid fa-spinner spinner"></i>:''}
+                        <label style={{margin:'1rem 0 '}}>Already have an account ! <Link to={props.type==='login'?'/auth/signup':'/auth/login'} >{props.type==='login'?'Signup':'Login'}</Link> </label>
 
-                    </button>
-                </div>
+                        <button className='btn-outline-primary'>
+                        {props.type==='login'?'Login':'Signup'}
+                        {loading?<i className="fa-solid fa-spinner spinner"></i>:''}
+
+                        </button>
+                    </div>
+                </form>
             </div>
             <div id='auth-banner' className="auth-banner a-center d-flex direction-col">
                 <h1>{offers[0].title}</h1>

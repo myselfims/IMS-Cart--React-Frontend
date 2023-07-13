@@ -27,7 +27,7 @@ const Sort = (props) => {
     }else if(filter==='HToL'){
       setDisabledBtn('HToL')
       setProducts(sorted.sort((a,b)=> b.price - a.price))
-
+      
     }
   }
 
