@@ -63,8 +63,6 @@ const OrderSummary = (props) => {
             
           });
         setTotalPrice(price)
-        // discountedprice===0?setDiscountedPrice(price):''
-        setDiscountedPrice(price)
         
       },[cart.length])
 
