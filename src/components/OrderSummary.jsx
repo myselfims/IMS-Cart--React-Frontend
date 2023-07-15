@@ -1,4 +1,4 @@
-import React,{useContext,useEffect,useState} from 'react'
+import React,{useContext,useEffect} from 'react'
 import { useNavigate } from 'react-router-dom'
 import AppContext from '../context/AppContext'
 import axios from 'axios'
@@ -63,6 +63,7 @@ const OrderSummary = (props) => {
             
           });
         setTotalPrice(price)
+        setDiscountedPrice(price)
         
       },[cart.length])
 

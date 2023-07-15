@@ -17,6 +17,7 @@ const AppState = (props)=>{
     const [discountedprice,setDiscountedPrice] = useState(0)
     const [promocode,setPromoCode] = useState('')
     const [payment,setPayment] = useState(false)
+    const [mode,setMode] = useState(false)
 
 
 
@@ -407,7 +408,7 @@ const AppState = (props)=>{
     }
 
     return(
-        <AppContext.Provider value={{fetchProducts,categories,fetchCategories,products,fetchAProduct,loading,setLoading,alert,setAlert,showAlert,login,signup,checkLogin,searchProduct,setProducts,fetchOffers,offers, addToCart, fetchCart,cart,deleteCart, logout, fetchUser,baseUrl,setCart,addToWishlist,removeWishlist,wishlist,setWishlist,fetchWishlist,fetchOrders,cancelOrder,orders,verifypromo,appliedCode,setAppliedCode,userdetails,totalPrice,discountedprice,promocode,setPromoCode,setDiscountedPrice,setTotalPrice,payment,setPayment}}>
+        <AppContext.Provider value={{fetchProducts,categories,fetchCategories,products,fetchAProduct,loading,setLoading,alert,setAlert,showAlert,login,signup,checkLogin,searchProduct,setProducts,fetchOffers,offers, addToCart, fetchCart,cart,deleteCart, logout, fetchUser,baseUrl,setCart,addToWishlist,removeWishlist,wishlist,setWishlist,fetchWishlist,fetchOrders,cancelOrder,orders,verifypromo,appliedCode,setAppliedCode,userdetails,totalPrice,discountedprice,promocode,setPromoCode,setDiscountedPrice,setTotalPrice,payment,setPayment,mode,setMode}}>
 
             {props.children}
 

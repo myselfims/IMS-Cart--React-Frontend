@@ -1,11 +1,10 @@
-import React, { useEffect,useContext } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import AppContext from "../context/AppContext";
 
 
 const CartItem = (props) => {
   const {deleteCart} = useContext(AppContext)
-  const {price,setPrice} = props.price
 
   const handleDelete = ()=>{
     deleteCart(props.cartitem.id)

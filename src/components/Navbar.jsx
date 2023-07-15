@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect} from 'react'
+import React, { useState, useContext} from 'react'
 import Sidebar from './Sidebar'
 import { Link, useNavigate } from 'react-router-dom'
 import AppContext from '../context/AppContext';
@@ -6,7 +6,7 @@ import Loader from './Loader';
 import Alert from './Alert';
 
 const Navbar = () => {
-  const {loading,alert,categories,logout,fetchCart}= useContext(AppContext)
+  const {loading,alert,categories,logout,fetchCart,mode,setMode}= useContext(AppContext)
   const [sidebar, setSidebar]= useState(false)
   const [query,setQuery]=useState('')
   const navigate = useNavigate()
@@ -25,6 +25,16 @@ const Navbar = () => {
       setSidebar(false)
     }else{
       setSidebar(true)
+    }
+  }
+
+  const handleMode = ()=>{
+    if (mode){
+      setMode(false)
+      document.body.className = 'light-mode'
+    }else{
+      document.body.className = 'dark-mode'
+      setMode(true)
     }
   }
   
@@ -58,6 +68,9 @@ const Navbar = () => {
             <div id='search-div' className="search-div">
                 <input onChange={handleSearch} type="text" placeholder='Search Product'/>
                 <button onClick={search}><i className="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+            <div className="theme-div">
+              <button onClick={handleMode}><i class={`${mode?"fa-solid fa-sun":"fa-solid fa-moon"}`}></i></button>
             </div>
             <div className="user-data">
               {localStorage.getItem('username')!==null?

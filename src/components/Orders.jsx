@@ -1,7 +1,6 @@
 import React,{useContext, useEffect, useState} from 'react';
 import OrderItem from './OrderItem';
 import AppContext from '../context/AppContext';
-import { Link } from 'react-router-dom';
 import EmptyAlert from './EmptyAlert';
 
 const Orders = () => {

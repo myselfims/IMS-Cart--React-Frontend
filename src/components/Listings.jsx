@@ -1,6 +1,6 @@
-import React,{useContext, useEffect, useState} from 'react'
+import React,{useContext, useEffect} from 'react'
 import ListItem from './ListItem'
-import { Link, useSearchParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import AppContext from '../context/AppContext'
 
 

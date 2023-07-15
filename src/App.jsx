@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import Navbar from './components/Navbar'
 import {
   BrowserRouter as Router,
@@ -16,18 +16,20 @@ import AuthenticationPage from './components/AuthenticationPage';
 import Checkout from './components/Checkout';
 import Wishlist from './components/Wishlist';
 import Orders from './components/Orders';
+import AppContext from './context/AppContext';
 
 
 
 
 const App = () => {
+  const {mode} = useContext(AppContext)
 
   return (
     <AppState>
 
     <Router forceRefresh={true}>
       
-      <div className='main-container'>
+      <div className={`${mode?'dark-mode':''} main-container`}>
         <Navbar/>
         <div className="nav-space"></div>
         <Routes>

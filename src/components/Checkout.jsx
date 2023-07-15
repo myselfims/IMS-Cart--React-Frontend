@@ -1,34 +1,14 @@
 import React, {useContext, useEffect, useState} from 'react'
-import CartItem from './CartItem'
 import AppContext from '../context/AppContext'
-import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
 import OrderSummary from './OrderSummary'
  
 
 const Checkout = () => {
-  const {setPayment,cart,fetchProducts,products,baseUrl,showAlert,fetchUser,appliedCode,setAppliedCode,verifypromo,payment} = useContext(AppContext)
+  const {setPayment,cart,fetchProducts,products,fetchUser,appliedCode,payment} = useContext(AppContext)
   const [totalPrice,setTotalPrice] = useState(0)
-  const [discountedprice,setDiscountedPrice] = useState(0)
-  const [promocode,setPromoCode] = useState('')
-  const navigate = useNavigate()
 
   const handleCod = ()=>{
     setPayment(true)
-  }
-
-  const handlePromoCode = (e)=>{
-    setPromoCode(e.target.value)
-  }
-
-  const applyPromo = ()=>{
-    verifypromo(promocode).then((res)=>{
-      let discount = (totalPrice/100)*res.discount
-      
-      setDiscountedPrice(totalPrice-discount)
-      setAppliedCode(res)
-
-    })
   }
 
 
