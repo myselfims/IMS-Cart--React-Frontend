@@ -184,6 +184,7 @@ nav{
 .hamburger-div{
   display: none;
 
+
   & button{
     border: none;
     background-color: transparent;
@@ -192,6 +193,7 @@ nav{
   
   & i{
     font-size: 2rem;
+    color: var(--txt-color);
   }
   
   & button:hover{
@@ -219,7 +221,7 @@ hr{
   position: fixed;
   width: 100vw;
   height: 100vh;
-  background-color: var(--theme);
+  background-color: rgba(0, 0, 0, 0.269);
   top: 0;
   display: flex;
   left: 0;
@@ -256,7 +258,7 @@ hr{
     & a{
       text-decoration: none;
       margin: 0.7rem 0;
-      color: black;
+      color: var(--txt-color);
 
       :hover{
         font-weight: bold;
@@ -265,6 +267,7 @@ hr{
 
     & i{
       margin: 0 1rem;
+      color: var(--txt-color);
     }
 
 
