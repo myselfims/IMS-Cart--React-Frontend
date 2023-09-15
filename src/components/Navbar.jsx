@@ -70,7 +70,7 @@ const Navbar = () => {
                 <button onClick={search}><i className="fa-solid fa-magnifying-glass"></i></button>
             </div>
             <div className="theme-div">
-              <button onClick={handleMode}><i class={`${mode?"fa-solid fa-sun":"fa-solid fa-moon"}`}></i></button>
+              <button onClick={handleMode}><i className={`${mode?"fa-solid fa-sun":"fa-solid fa-moon"}`}></i></button>
             </div>
             <div className="user-data">
               {localStorage.getItem('username')!==null?

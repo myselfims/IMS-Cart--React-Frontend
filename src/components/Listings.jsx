@@ -19,7 +19,7 @@ const Listings = (props) => {
         </div>
         <div className="list-items-div">
             {props.products.map((product)=>{
-              return(<ListItem key={product.id} product={product}/>)
+              return(<ListItem key={product?.id} product={product}/>)
             })}
         </div>
 

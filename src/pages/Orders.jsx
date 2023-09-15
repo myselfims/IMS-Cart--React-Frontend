@@ -1,7 +1,7 @@
 import React,{useContext, useEffect, useState} from 'react';
-import OrderItem from './OrderItem';
+import OrderItem from '../components/OrderItem'
 import AppContext from '../context/AppContext';
-import EmptyAlert from './EmptyAlert';
+import EmptyAlert from '../components/EmptyAlert';
 
 const Orders = () => {
 

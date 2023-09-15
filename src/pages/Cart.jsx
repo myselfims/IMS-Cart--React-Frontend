@@ -1,13 +1,13 @@
 import React, {useContext, useEffect, useState} from 'react'
-import CartItem from './CartItem'
+import CartItem from '../components/CartItem'
 import AppContext from '../context/AppContext'
-import EmptyAlert from './EmptyAlert'
-import OrderSummary from './OrderSummary'
+import EmptyAlert from '../components/EmptyAlert'
+import OrderSummary from '../components/OrderSummary'
 
  
 
 const Cart = () => {
-  const {cart,fetchCart,fetchProducts,products,fetchUser,appliedCode} = useContext(AppContext)
+  const {cart,fetchCart,fetchProducts,setPromoCode,products,fetchUser,appliedCode} = useContext(AppContext)
   const [totalPrice,setTotalPrice] = useState(0)
 
   useEffect(()=>{

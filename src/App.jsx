@@ -6,16 +6,16 @@ import {
   Route,
 
 } from "react-router-dom";
-import ViewItem from './components/ViewItem';
-import LandingPage from './components/LandingPage';
-import Cart from './components/Cart';
-import ProfilePage from './components/ProfilePage';
-import SearchPage from './components/SearchPage';
+import ViewItem from './pages/ViewItem';
+import LandingPage from './pages/LandingPage';
+import Cart from './pages/Cart';
+import ProfilePage from './pages/ProfilePage';
+import SearchPage from './pages/SearchPage';
 import AppState from './context/AppState';
-import AuthenticationPage from './components/AuthenticationPage';
-import Checkout from './components/Checkout';
-import Wishlist from './components/Wishlist';
-import Orders from './components/Orders';
+import AuthenticationPage from './pages/AuthenticationPage';
+import Checkout from './pages/Checkout';
+import Wishlist from './pages/Wishlist';
+import Orders from './pages/Orders';
 import AppContext from './context/AppContext';
 
 

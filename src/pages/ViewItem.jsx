@@ -1,5 +1,5 @@
 import React, { useEffect,useContext, useState } from 'react'
-import Listings from './Listings'
+import Listings from '../components/Listings'
 import { useNavigate, useParams } from 'react-router-dom'
 import AppContext from '../context/AppContext'
 

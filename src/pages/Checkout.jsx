@@ -1,10 +1,10 @@
 import React, {useContext, useEffect, useState} from 'react'
 import AppContext from '../context/AppContext'
-import OrderSummary from './OrderSummary'
+import OrderSummary from '../components/OrderSummary'
  
 
 const Checkout = () => {
-  const {setPayment,cart,fetchProducts,products,fetchUser,appliedCode,payment} = useContext(AppContext)
+  const {setPayment,cart,setDiscountedPrice ,fetchProducts,setPromoCode,products,fetchUser,appliedCode,payment} = useContext(AppContext)
   const [totalPrice,setTotalPrice] = useState(0)
 
   const handleCod = ()=>{

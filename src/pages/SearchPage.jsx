@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext} from 'react'
-import Carousel from './Carousel'
-import Sort from './Sort'
-import Listings from './Listings'
+
+import Sort from '../components/Sort'
+import Listings from '../components/Listings'
 import AppContext from '../context/AppContext'
 import { useParams } from 'react-router-dom'
 
